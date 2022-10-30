@@ -4,31 +4,15 @@ import org.example.abstract_factory.BulbheadPrinter;
 import org.example.abstract_factory.FontStyle;
 import org.example.abstract_factory.GrafitiPrinter;
 import org.example.abstract_factory.Printer;
-import org.example.elements.*;
 
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class UserInterface {
 
-        UserInterface ui = new UserInterface();
-        ui.initializeFlipper();
-
-
-
-        /*Scanner scanner = new Scanner(System.in);
-        int selectedFont = 0;
-
-        FlipperField field = new FlipperField();
-        field.addElement(new Plunger());
-        field.addElement(new Slingshot());
-        field.addElement(new Bumper());
-        field.addElement(new Hole());
-        field.addElement(new TargetGroup(5));
-
-        for(ElementActions action : field.childFieldElements){
-            action.hit();
-        }
+    public void initializeFlipper(){
+        Scanner scanner = new Scanner(System.in);
+        int selectedFont = 0, coins = 0;
+        String input = "";
 
         System.out.println("============================");
         System.out.println("|     FONT SELECTION       |");
@@ -46,17 +30,28 @@ public class Main {
                 selectedFont = 0;
             }
         }
+        System.out.println("Font Style selected!");
 
         Printer printer = new GrafitiPrinter();
 
         if(selectedFont == 1){
             printer = new BulbheadPrinter();
         }
-
         FontStyle writeFont = printer.createFontStyle();
 
-        writeFont.printStart();*/
+        System.out.println("How many coins do you want to insert: ");
+        coins = scanner.nextInt();
 
+        FlipperMachine flipper = new FlipperMachine(writeFont);
+        flipper.insertCoin(coins);
+
+        System.out.println("Type Start to begin!");
+        input = scanner.nextLine();
+
+        if(input == "Start"){
+            flipper.pressStart();
+        }
 
     }
+
 }

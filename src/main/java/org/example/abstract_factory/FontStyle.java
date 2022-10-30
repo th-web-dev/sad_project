@@ -6,4 +6,5 @@ public interface FontStyle {
     public void printBall1();
     public void printBall2();
     public void printBall3();
+    public void printReady();
 }

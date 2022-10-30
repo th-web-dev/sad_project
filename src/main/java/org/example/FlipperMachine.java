@@ -1,14 +1,22 @@
 package org.example;
 
+import org.example.abstract_factory.FontStyle;
+
 public class FlipperMachine {
     public String state= "No Credit";
     public int credit;
+    FontStyle writeFont;
+
+    public FlipperMachine(FontStyle writeFont){
+        this.writeFont = writeFont;
+    }
 
     public void insertCoin (int coin){
         this.credit += coin;
 
         if(credit > 1){
             this.state = "Ready";
+            writeFont.printReady();
         }
     }
 
@@ -22,7 +30,7 @@ public class FlipperMachine {
                 break;
             case "Ready":
                 this.state = "Playing";
-                System.out.println("Game started! Let's rock!");
+                writeFont.printStart();
                 break;
         }
     }
