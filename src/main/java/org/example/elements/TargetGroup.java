@@ -5,6 +5,7 @@ import org.example.visitors.Visitor;
 import java.util.ArrayList;
 import java.util.List;
 
+// Composite Pattern: Head/Leaf Class
 public class TargetGroup extends Element {
     private List<Target> targets;
     public int points;
@@ -15,7 +16,6 @@ public class TargetGroup extends Element {
         for (int i = 0; i < amountOfTargets; i++){
             targets.add(new Target());
         }
-
     }
 
     @Override

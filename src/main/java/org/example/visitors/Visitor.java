@@ -2,6 +2,7 @@ package org.example.visitors;
 
 import org.example.elements.*;
 
+//Visitor Pattern: Interface
 public interface Visitor {
 
     void visitRamp(Ramp ramp);

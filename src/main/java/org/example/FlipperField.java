@@ -4,6 +4,7 @@ import org.example.elements.Element;
 import java.util.ArrayList;
 import java.util.List;
 
+// Composite Pattern: Head Class
 public class FlipperField {
     public List<Element> childFieldElements;
     public int score;

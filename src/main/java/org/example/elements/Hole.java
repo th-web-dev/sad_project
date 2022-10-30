@@ -2,6 +2,7 @@ package org.example.elements;
 
 import org.example.visitors.Visitor;
 
+// Composite Pattern: Leaf Class
 public class Hole extends Element {
 
     public Hole (){

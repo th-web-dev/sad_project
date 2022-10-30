@@ -4,6 +4,7 @@ import org.example.elements.*;
 
 import java.util.List;
 
+//Visitor Pattern: Specific Visitor
 public class PunkteVisitor implements Visitor{
 
     public void sumElements(List<Element> elements){

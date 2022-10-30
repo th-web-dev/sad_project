@@ -4,6 +4,7 @@ import org.example.elements.*;
 
 import java.util.List;
 
+//Visitor Pattern: Specific Visitor
 public class ResetVisitor implements Visitor{
 
     public void resetElements(List<Element> elements){

@@ -2,6 +2,7 @@ package org.example.elements;
 
 import org.example.visitors.Visitor;
 
+//Command Pattern: Request Class & Implement interface in all Elements
 public abstract class Element implements ElementActions{
     public int points;
     public int hitValue;

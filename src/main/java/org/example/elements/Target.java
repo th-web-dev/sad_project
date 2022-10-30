@@ -2,6 +2,7 @@ package org.example.elements;
 
 import org.example.visitors.Visitor;
 
+// Composite Pattern: Leaf Class
 public class Target extends Element {
 
     public Target(){
