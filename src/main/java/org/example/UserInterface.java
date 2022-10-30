@@ -11,8 +11,7 @@ public class UserInterface {
 
     public void initializeFlipper(){
         Scanner scanner = new Scanner(System.in);
-        int selectedFont = 0, coins = 0;
-        String input = "";
+        int selectedFont = 0, coins = 0, input = 0;
 
         System.out.println("============================");
         System.out.println("|     FONT SELECTION       |");
@@ -39,19 +38,26 @@ public class UserInterface {
         }
         FontStyle writeFont = printer.createFontStyle();
 
-        System.out.println("How many coins do you want to insert: ");
-        coins = scanner.nextInt();
-
+        System.out.println("============================");
+        System.out.println("|     MENU SELECTION       |");
+        System.out.println("============================");
+        System.out.println("| Options:                 |");
+        System.out.println("|        1. Press Start    |");
+        System.out.println("|        2. Insert Coin    |");
+        System.out.println("============================");
+        System.out.println("Select Option: ");
+        input = scanner.nextInt();
         FlipperMachine flipper = new FlipperMachine(writeFont);
-        flipper.insertCoin(coins);
 
-        System.out.println("Type Start to begin!");
-        input = scanner.nextLine();
-
-        if(input == "Start"){
-            flipper.pressStart();
+        switch(input){
+            case 1:
+                flipper.pressStart();
+                break;
+            case 2:
+                System.out.println("How many coins do you want to insert: ");
+                coins = scanner.nextInt();
+                flipper.insertCoin(coins);
+                break;
         }
-
     }
-
 }
