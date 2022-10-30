@@ -11,10 +11,6 @@ public class Plunger extends Element {
         this.hitValue = 10;
     }
 
-    public void hit(){
-
-    }
-
     @Override
     public int generatePoints() {
         this.points=this.hitValue;
@@ -22,12 +18,12 @@ public class Plunger extends Element {
     }
 
     @Override
-    public void execute() {
-
+    public void accept(Visitor visitor) {
+        visitor.visitPlunger(this);
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitPlunger(this);
+    public void hit() {
+
     }
 }

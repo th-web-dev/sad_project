@@ -19,10 +19,6 @@ public class FlipperField {
         return score;
     }
 
-    public void execute() {
-
-    }
-
     public void addElement(Element element){
         childFieldElements.add(element);
     }

@@ -2,13 +2,19 @@ package org.example.elements;
 
 import org.example.visitors.Visitor;
 
-public abstract class Element {
+public abstract class Element implements ElementActions{
     public int points;
     public int hitValue;
 
-    public abstract int generatePoints();
+    public void blinkingLED(){
+        System.out.println("LEDs are blinking!");
+    };
 
-    public abstract void execute();
+    public void soundPlaying(){
+        System.out.println("Möp Möp Möp!");
+    }
+
+    public abstract int generatePoints();
 
     public abstract void accept(Visitor visitor);
 }

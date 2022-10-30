@@ -25,12 +25,12 @@ public class TargetGroup extends Element {
     }
 
     @Override
-    public void execute() {
-
+    public void accept(Visitor visitor) {
+        visitor.visitTargetGroup(this);
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitTargetGroup(this);
+    public void hit() {
+
     }
 }

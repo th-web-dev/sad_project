@@ -1,5 +1,7 @@
 package org.example.elements;
 
+import org.example.visitors.Visitor;
+
 public class Hole extends Element {
 
     public Hole (){
@@ -15,8 +17,14 @@ public class Hole extends Element {
         return this.points;
     }
 
+
     @Override
-    public void execute() {
+    public void accept(Visitor visitor) {
+
+    }
+
+    @Override
+    public void hit() {
 
     }
 }

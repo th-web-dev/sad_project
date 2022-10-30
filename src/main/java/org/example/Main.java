@@ -11,6 +11,10 @@ public class Main {
         field.addElement(new Hole());
         field.addElement(new TargetGroup(5));
 
+        for(ElementActions action : field.childFieldElements){
+            action.hit();
+        }
+
         System.out.println(field.generatePoints());
     }
 }

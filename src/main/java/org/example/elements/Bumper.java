@@ -1,6 +1,8 @@
 package org.example.elements;
 
-public class Bumper extends Element {
+import org.example.visitors.Visitor;
+
+public class Bumper extends Element{
 
     public Bumper(){
         this.points = 0;
@@ -14,7 +16,12 @@ public class Bumper extends Element {
     }
 
     @Override
-    public void execute() {
+    public void accept(Visitor visitor) {
+        visitor.visitBumper(this);
+    }
 
+    @Override
+    public void hit() {
+        this.soundPlaying();
     }
 }

@@ -2,13 +2,12 @@ package org.example.elements;
 
 import org.example.visitors.Visitor;
 
-public class Slingshot extends Element {
+public class Slingshot extends Element{
 
     public Slingshot(){
         this.points = 0;
         this.hitValue = 20;
     }
-
 
     @Override
     public int generatePoints() {
@@ -17,12 +16,12 @@ public class Slingshot extends Element {
     }
 
     @Override
-    public void execute() {
-
+    public void accept(Visitor visitor) {
+        visitor.visitSlingshot(this);
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitSlingshot(this);
+    public void hit() {
+        this.blinkingLED();
     }
 }

@@ -24,12 +24,12 @@ public class Ramp extends Element{
     }
 
     @Override
-    public void execute() {
-
+    public void accept(Visitor visitor) {
+        visitor.visitRamp(this);
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitRamp(this);
+    public void hit() {
+
     }
 }

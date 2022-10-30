@@ -17,12 +17,12 @@ public class Target extends Element {
     }
 
     @Override
-    public void execute() {
-
+    public void accept(Visitor visitor) {
+        visitor.visitTarget(this);
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitTarget(this);
+    public void hit() {
+
     }
 }
