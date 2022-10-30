@@ -1,6 +1,6 @@
 package org.example;
 
-public class flipperMachine {
+public class FlipperMachine {
     public String state= "No Credit";
     public int credit;
 
