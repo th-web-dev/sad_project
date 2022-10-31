@@ -1,17 +1,71 @@
 package org.example;
 
-import org.example.abstract_factory.BulbheadPrinter;
-import org.example.abstract_factory.FontStyle;
-import org.example.abstract_factory.GrafitiPrinter;
-import org.example.abstract_factory.Printer;
+import org.example.abstract_factory.*;
 
 import java.util.Scanner;
 
 public class UserInterface {
+    FlipperMachine flipper;
+    public UserInterface(){
+        this.flipper = new FlipperMachine(new FontStyleDefault(), this);
+    }
 
     public void initializeFlipper(){
         Scanner scanner = new Scanner(System.in);
-        int selectedFont = 0, coins = 0, input = 0;
+        int input = 0;
+
+        System.out.println("============================");
+        System.out.println("|     MENU SELECTION       |");
+        System.out.println("============================");
+        System.out.printf("| Credit: %03d              |\n", flipper.credit);
+        System.out.println("|                          |");
+        System.out.println("| Options:                 |");
+        System.out.println("|     1. Press Start       |");
+        System.out.println("|     2. Insert Coin       |");
+        System.out.println("|     3. Set/Change Font   |");
+        System.out.println("|     4. Help              |");
+        System.out.println("============================");
+
+        System.out.println("Select Option: ");
+        input = scanner.nextInt();
+        input = validateInput(input, 1, 4);
+
+        switch (input){
+            case 1:
+                flipper.pressStart();
+                break;
+            case 2:
+                System.out.println("How many coins do you want to insert: ");
+                input = scanner.nextInt();
+                flipper.insertCoin(input);
+                initializeFlipper();
+                break;
+            case 3:
+                flipper.writeFont = selectFont();
+                initializeFlipper();
+                break;
+            case 4:
+                showHelp();
+                initializeFlipper();
+                break;
+        }
+
+    }
+
+    public int validateInput(int input, int from, int to){
+        Scanner scanner = new Scanner(System.in);
+
+        while((input< from || input > to )){
+            System.out.println("Option does not exist! Please select a valid option: ");
+            input = scanner.nextInt();
+        }
+        return input;
+    }
+
+    public FontStyle selectFont(){
+        Scanner scanner = new Scanner(System.in);
+        int selectedFont = 0;
+        Printer printer = new DefaultPrinter();
 
         System.out.println("============================");
         System.out.println("|     FONT SELECTION       |");
@@ -19,45 +73,27 @@ public class UserInterface {
         System.out.println("| Options:                 |");
         System.out.println("|        1. Bulbhead       |");
         System.out.println("|        2. Grafiti        |");
+        System.out.println("|        3. Default        |");
         System.out.println("============================");
         System.out.println("Select Option: ");
+        selectedFont = scanner.nextInt();
 
-        while(selectedFont == 0) {
-            selectedFont = scanner.nextInt();
-            if(!(selectedFont == 1 || selectedFont == 2)){
-                System.out.println("Invalid selection! Please choose  number from the menu:");
-                selectedFont = 0;
-            }
-        }
+        selectedFont = validateInput(selectedFont, 1, 3);
         System.out.println("Font Style selected!");
-
-        Printer printer = new GrafitiPrinter();
 
         if(selectedFont == 1){
             printer = new BulbheadPrinter();
+        } else if(selectedFont == 2){
+            printer = new GrafitiPrinter();
         }
         FontStyle writeFont = printer.createFontStyle();
+        writeFont.printFont();
 
-        System.out.println("============================");
-        System.out.println("|     MENU SELECTION       |");
-        System.out.println("============================");
-        System.out.println("| Options:                 |");
-        System.out.println("|        1. Press Start    |");
-        System.out.println("|        2. Insert Coin    |");
-        System.out.println("============================");
-        System.out.println("Select Option: ");
-        input = scanner.nextInt();
-        FlipperMachine flipper = new FlipperMachine(writeFont);
-
-        switch(input){
-            case 1:
-                flipper.pressStart();
-                break;
-            case 2:
-                System.out.println("How many coins do you want to insert: ");
-                coins = scanner.nextInt();
-                flipper.insertCoin(coins);
-                break;
-        }
+        return writeFont;
     }
+
+    public void showHelp(){
+        System.out.println("Some instructions.... Here is how you play!");
+    }
+
 }

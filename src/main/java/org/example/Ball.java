@@ -2,9 +2,11 @@ package org.example;
 
 //Singleton Pattern: Singleton
 public class Ball {
-    private static final org.example.Ball Ball = new Ball();
+    private static final Ball ball = new Ball();
 
-    public static org.example.Ball getInstance() {
-        return Ball;
+    private Ball (){}
+
+    public static Ball getInstance() {
+        return ball;
     }
 }

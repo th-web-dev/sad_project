@@ -7,4 +7,5 @@ public interface FontStyle {
     public void printBall2();
     public void printBall3();
     public void printReady();
+    public void printFont();
 }
