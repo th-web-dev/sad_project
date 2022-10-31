@@ -24,6 +24,7 @@ public class Hole extends Element {
 
     }
 
+    //Command Pattern
     @Override
     public void hit() {
 

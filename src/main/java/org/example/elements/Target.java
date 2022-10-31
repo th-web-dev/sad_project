@@ -22,6 +22,7 @@ public class Target extends Element {
         visitor.visitTarget(this);
     }
 
+    //Command Pattern
     @Override
     public void hit() {
 

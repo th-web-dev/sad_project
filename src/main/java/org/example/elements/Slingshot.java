@@ -21,6 +21,7 @@ public class Slingshot extends Element{
         visitor.visitSlingshot(this);
     }
 
+    //Command Pattern
     @Override
     public void hit() {
         this.blinkingLED();

@@ -21,6 +21,7 @@ public class Bumper extends Element{
         visitor.visitBumper(this);
     }
 
+    //Command Pattern
     @Override
     public void hit() {
         this.soundPlaying();

@@ -96,4 +96,49 @@ public class UserInterface {
         System.out.println("Some instructions.... Here is how you play!");
     }
 
+    public void gameControl(){
+        Scanner scanner = new Scanner(System.in);
+        int input = 0;
+
+        System.out.println("============================");
+        System.out.printf("| Credit: %03d              |\n", flipper.credit);
+        System.out.printf("| Lifes:  %d                |\n", flipper.game.lifes);
+        System.out.printf("| Score:  %010d       |\n", flipper.game.score);
+        System.out.println("|                          |");
+        System.out.println("| Options:                 |");
+        System.out.println("|     1. Left Flipper      |");
+        System.out.println("|     2. Right Flipper     |");
+        System.out.println("|                          |");
+        System.out.println("|     3. Press Start       |");
+        System.out.println("|     4. Insert Coin       |");
+        System.out.println("|     5. Set/Change Font   |");
+        System.out.println("|     6. Help              |");
+        System.out.println("============================");
+
+        System.out.println("Select Option: ");
+        input = scanner.nextInt();
+        input = validateInput(input, 1, 6);
+
+/*        switch (input){
+            case 1:
+                flipper.pressStart();
+                break;
+            case 2:
+                System.out.println("How many coins do you want to insert: ");
+                input = scanner.nextInt();
+                flipper.insertCoin(input);
+                initializeFlipper();
+                break;
+            case 3:
+                flipper.writeFont = selectFont();
+                initializeFlipper();
+                break;
+            case 4:
+                showHelp();
+                initializeFlipper();
+                break;
+        }*/
+    }
+
+
 }

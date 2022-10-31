@@ -29,6 +29,7 @@ public class TargetGroup extends Element {
         visitor.visitTargetGroup(this);
     }
 
+    //Command Pattern
     @Override
     public void hit() {
 

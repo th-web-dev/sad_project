@@ -29,6 +29,7 @@ public class Ramp extends Element{
         visitor.visitRamp(this);
     }
 
+    //Command Pattern
     @Override
     public void hit() {
 

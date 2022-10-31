@@ -23,6 +23,7 @@ public class Plunger extends Element {
         visitor.visitPlunger(this);
     }
 
+    //Command Pattern
     @Override
     public void hit() {
 

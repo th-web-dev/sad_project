@@ -13,7 +13,6 @@ public class FlipperField {
         childFieldElements = new ArrayList<>();
     }
 
-
     public int generatePoints() {
         score = 0;
         childFieldElements.forEach(e -> score += e.generatePoints());

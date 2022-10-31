@@ -16,6 +16,12 @@ public abstract class Element implements ElementActions{
         System.out.println("Möp Möp Möp!");
     }
 
+    public void launchBall() { }
+
+    public void bounceBall() { }
+
+    public void activate() { }
+
     public abstract int generatePoints();
 
     public abstract void accept(Visitor visitor);
