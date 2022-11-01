@@ -23,26 +23,24 @@ public class FlipperMachine {
     public void insertCoin (int coin){
         this.credit += coin;
 
-        if(credit > 1){
+        if(credit >= 1){
             this.state = "Ready";
             writeFont.printReady();
         }
     }
 
     public void pressStart(){
-        switch(this.state){
-            case "No Credit":
+        switch (this.state) {
+            case "No Credit" -> {
                 System.out.println("No credit! Please insert some coin!");
                 ui.initializeFlipper();
-                break;
-            case "Playing":
-                System.out.println("Created by Tobias Haag and Markus Maierhofer!");
-                break;
-            case "Ready":
+            }
+            case "Playing" -> System.out.println("Created by Tobias Haag and Markus Maierhofer!");
+            case "Ready" -> {
                 this.state = "Playing";
                 writeFont.printStart();
                 startGame();
-                break;
+            }
         }
     }
 
@@ -52,9 +50,7 @@ public class FlipperMachine {
         this.field = createField();
         this.game = new Game(this.ui, this.field);
         int action = ui.gameControl();
-
         handleControl(action);
-
     }
 
     public FlipperField createField(){
@@ -98,6 +94,15 @@ public class FlipperMachine {
             case 2 -> { writeFont.printBall2(); handleControl(ui.gameControl()); }
             case 3 -> { writeFont.printBall1(); handleControl(ui.gameControl()); }
             case 0 -> { writeFont.printGameOver();}
+        }
+    }
+
+    private void gameOverGamble(){
+        int gamble = game.generateRandomNumber(0,1);
+        if(gamble == 1){
+            System.out.println("Congratulations! You won a free Game!");
+            insertCoin(1);
+            startGame();
         }
     }
 
