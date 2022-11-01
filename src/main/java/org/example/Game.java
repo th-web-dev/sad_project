@@ -28,7 +28,7 @@ public class Game {
 
     public boolean initiateRound(){
         Scanner scanner = new Scanner(System.in);
-        int randomNumber = (int) (Math.random() * (100 - 1)) + 1;
+        int randomNumber = generateRandomNumber(1,100);
         int guess, tries = convertDifficultyToTries(), lastGuess = 0;
         boolean isLower = false;
         System.out.println("Guess the number between 1 and 100! You have "+tries+" guesses: ");
@@ -55,13 +55,18 @@ public class Game {
                 //TODO: Hit something
 
             } else if (guess == randomNumber) {
-                System.out.println("Your are right!");
+                System.out.println("Your are right! The number is: " + randomNumber);
                 return true;
             }
         }
+
         System.out.println("Ball lost!");
         this.lifes --;
         return false;
+    }
+
+    public int generateRandomNumber(int min, int max){
+        return (int) (Math.random() * (max - min)) + min;
     }
 
     public int convertDifficultyToTries(){
