@@ -4,10 +4,13 @@ import org.example.visitors.Visitor;
 
 // Composite Pattern: Leaf Class
 public class Target extends Element {
+    public String state;
 
-    public Target(){
+    public Target(ElementMediator mediator, String name){
+        super(mediator, name);
         this.points = 0;
-        this.hitValue = 10;
+        this.hitValue = 20;
+        this.state = "inactive";
     }
 
 
@@ -25,6 +28,8 @@ public class Target extends Element {
     //Command Pattern
     @Override
     public void hit() {
-
+        this.points += hitValue;
+        this.state = "active";
+        mediator.checkTargetGroup(name);
     }
 }

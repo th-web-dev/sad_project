@@ -70,14 +70,11 @@ public class Game {
     }
 
     public int convertDifficultyToTries(){
-        switch (difficulty){
-            case 2:
-                return 7;
-            case 3:
-                return 5;
-            default:
-                return 10;
-        }
+        return switch (difficulty) {
+            case 2 -> 7;
+            case 3 -> 5;
+            default -> 10;
+        };
     }
 
 }

@@ -13,23 +13,23 @@ public class FlipperMachine {
     public FlipperField field;
     public Game game;
 
-    public FlipperMachine(FontStyle writeFont, UserInterface ui){
+    public FlipperMachine(FontStyle writeFont, UserInterface ui) {
         this.writeFont = writeFont;
         this.credit = 0;
         this.ui = ui;
         this.state = "No Credit";
     }
 
-    public void insertCoin (int coin){
+    public void insertCoin(int coin) {
         this.credit += coin;
 
-        if(credit >= 1){
+        if (credit >= 1) {
             this.state = "Ready";
             writeFont.printReady();
         }
     }
 
-    public void pressStart(){
+    public void pressStart() {
         switch (this.state) {
             case "No Credit" -> {
                 System.out.println("No credit! Please insert some coin!");
@@ -44,8 +44,7 @@ public class FlipperMachine {
         }
     }
 
-    public void startGame(){
-        boolean result;
+    public void startGame() {
         this.credit--;
         this.field = createField();
         this.game = new Game(this.ui, this.field);
@@ -53,32 +52,31 @@ public class FlipperMachine {
         handleControl(action);
     }
 
-    public FlipperField createField(){
+    public FlipperField createField() {
         FlipperField field = new FlipperField();
 
-        field.addElement(new Bumper());
-        field.addElement(new Bumper());
-        field.addElement(new Bumper());
-        field.addElement(new Slingshot());
-        field.addElement(new Slingshot());
-        field.addElement(new TargetGroup(5));
-        field.addElement(new TargetGroup(5));
-        field.addElement(new Hole());
-        field.addElement(new Hole());
-        field.addElement(new Ramp());
-        field.addElement(new Ramp());
-        field.addElement(new Plunger());
-        field.addElement(new Plunger());
+        field.addElement(new Bumper(field, "GALAXY1"));
+        field.addElement(new Bumper(field, "GALAXY2"));
+        field.addElement(new Bumper(field, "GALAXY3"));
+        field.addElement(new Slingshot(field, "LIGHTNING1"));
+        field.addElement(new Slingshot(field, "LIGHTNING2"));
+        field.addElement(new TargetGroup(5, field, "555"));
+        field.addElement(new TargetGroup(5, field, "5FINGERS"));
+        field.addElement(new Hole(field, "WORM"));
+        field.addElement(new Hole(field, "BLACK"));
+        field.addElement(new Ramp(field, "555"));
+        field.addElement(new Ramp(field, "5FINGERS"));
+        field.addElement(new Plunger(field, "LEFT"));
+        field.addElement(new Plunger(field, "RIGHT"));
 
         return field;
-
     }
 
-    public void mediateControl(){
+    public void mediateControl() {
 
         boolean result = game.initiateRound();
 
-        if(result){
+        if (result) {
             System.out.println("Hit left or right Flipper!");
             //TODO: Add points to score
             handleControl(ui.gameControl());
@@ -89,24 +87,37 @@ public class FlipperMachine {
     }
 
     private void printBall(int lifes) {
-        switch(lifes){
-            case 1 -> { writeFont.printBall3(); handleControl(ui.gameControl()); }
-            case 2 -> { writeFont.printBall2(); handleControl(ui.gameControl()); }
-            case 3 -> { writeFont.printBall1(); handleControl(ui.gameControl()); }
-            case 0 -> { writeFont.printGameOver();}
+        switch (lifes) {
+            case 1 -> {
+                writeFont.printBall3();
+                handleControl(ui.gameControl());
+            }
+            case 2 -> {
+                writeFont.printBall2();
+                handleControl(ui.gameControl());
+            }
+            case 3 -> {
+                writeFont.printBall1();
+                handleControl(ui.gameControl());
+            }
+            case 0 -> {
+                writeFont.printGameOver();
+                gameOverGamble();
+            }
         }
     }
 
-    private void gameOverGamble(){
-        int gamble = game.generateRandomNumber(0,1);
-        if(gamble == 1){
+    private void gameOverGamble() {
+        //TODO: Finalisieren
+        int gamble = game.generateRandomNumber(0, 1);
+        if (gamble == 1) {
             System.out.println("Congratulations! You won a free Game!");
             insertCoin(1);
             startGame();
         }
     }
 
-    public void handleControl(int input){
+    public void handleControl(int input) {
         Scanner scanner = new Scanner(System.in);
         switch (input) {
             case 1, 2 -> mediateControl();

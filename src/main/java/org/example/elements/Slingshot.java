@@ -5,7 +5,8 @@ import org.example.visitors.Visitor;
 // Composite Pattern: Leaf Class
 public class Slingshot extends Element{
 
-    public Slingshot(){
+    public Slingshot(ElementMediator mediator, String name){
+        super(mediator, name);
         this.points = 0;
         this.hitValue = 20;
     }

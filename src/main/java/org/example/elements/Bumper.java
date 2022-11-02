@@ -5,7 +5,10 @@ import org.example.visitors.Visitor;
 // Composite Pattern: Leaf Class
 public class Bumper extends Element{
 
-    public Bumper(){
+    public String state;
+
+    public Bumper(ElementMediator mediator, String name){
+        super(mediator, name);
         this.points = 0;
         this.hitValue = 20;
     }
@@ -24,6 +27,7 @@ public class Bumper extends Element{
     //Command Pattern
     @Override
     public void hit() {
-        this.soundPlaying();
+        this.state = toggleActive(this.state);
+        mediator.checkBumper();
     }
 }

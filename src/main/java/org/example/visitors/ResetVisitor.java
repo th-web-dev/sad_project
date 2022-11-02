@@ -16,7 +16,7 @@ public class ResetVisitor implements Visitor{
 
     @Override
     public void visitRamp(Ramp ramp) {
-
+        ramp.close();
     }
 
     @Override
@@ -41,12 +41,12 @@ public class ResetVisitor implements Visitor{
 
     @Override
     public void visitTargetGroup(TargetGroup targetGroup) {
-
+        targetGroup.resetTargets();
     }
 
     @Override
     public void visitTarget(Target target) {
-
+        target.state = "inactive";
     }
 
 

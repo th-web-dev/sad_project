@@ -5,7 +5,8 @@ import org.example.visitors.Visitor;
 // Composite Pattern: Leaf Class
 public class Hole extends Element {
 
-    public Hole (){
+    public Hole (ElementMediator mediator, String name){
+        super(mediator, name);
         this.points = 0;
         this.hitValue = 30;
     }

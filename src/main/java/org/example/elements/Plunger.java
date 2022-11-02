@@ -6,7 +6,8 @@ import org.example.visitors.Visitor;
 public class Plunger extends Element {
     public boolean isOpen;
 
-    public Plunger(){
+    public Plunger(ElementMediator mediator, String name){
+        super(mediator, name);
         this.points = 0;
         this.isOpen = false;
         this.hitValue = 10;

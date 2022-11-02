@@ -9,12 +9,27 @@ import java.util.List;
 public class TargetGroup extends Element {
     private List<Target> targets;
     public int points;
+    public String name;
 
-    public TargetGroup(int amountOfTargets){
+    public TargetGroup(int amountOfTargets, ElementMediator mediator, String name){
+        super(mediator, name);
         targets = new ArrayList<>();
-
         for (int i = 0; i < amountOfTargets; i++){
-            targets.add(new Target());
+            targets.add(new Target(mediator, name));
+        }
+    }
+
+    public boolean allTargetsActive(){
+        int i = 0;
+        for(Target t : targets){
+            if(t.state == "active") i++;
+        }
+        return i == targets.size();
+    }
+
+    public void resetTargets(){
+        for(Target t : targets){
+            t.state = "inactive";
         }
     }
 
