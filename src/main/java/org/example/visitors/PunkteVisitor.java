@@ -1,6 +1,5 @@
 package org.example.visitors;
 
-import org.example.Game;
 import org.example.elements.*;
 
 import java.util.List;

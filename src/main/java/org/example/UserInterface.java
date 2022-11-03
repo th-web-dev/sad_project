@@ -111,35 +111,13 @@ public class UserInterface {
         System.out.println("|     4. Press Start       |");
         System.out.println("|     5. Insert Coin       |");
         System.out.println("|     6. Set/Change Font   |");
-        System.out.println("|     7. Set difficulty    |");
-        System.out.println("|     8. Help              |");
+        System.out.println("|     7. Help              |");
         System.out.println("============================");
 
         System.out.println("Select Option: ");
         input = scanner.nextInt();
-        input = validateInput(input, 1, 8);
+        input = validateInput(input, 1, 7);
 
         return input;
     }
-
-    public int selectDifficutly(){
-        Scanner scanner = new Scanner(System.in);
-        int difficutly = 1;
-
-        System.out.println("============================");
-        System.out.println("|     SET DEFFICULTY       |");
-        System.out.println("============================");
-        System.out.println("| Options:                 |");
-        System.out.println("|        1. Easy           |");
-        System.out.println("|        2. Medium         |");
-        System.out.println("|        3. Hard           |");
-        System.out.println("============================");
-        System.out.println("Select Option: ");
-        difficutly = scanner.nextInt();
-        difficutly = validateInput(difficutly, 1, 3);
-
-        return difficutly;
-    }
-
-
 }

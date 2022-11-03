@@ -24,8 +24,11 @@ public abstract class Element implements ElementActions {
     }
 
     public String toggleActive(String state){
-        if(state == "inactive") state = "active";
-        if(state == "active") state = "inactive";
+        if(state == "inactive") {
+            state = "active";
+        } else {
+            state = "inactive";
+        }
         return state;
     }
 

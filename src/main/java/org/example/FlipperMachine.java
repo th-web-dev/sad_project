@@ -1,8 +1,10 @@
 package org.example;
 
+import com.sun.tools.attach.AgentInitializationException;
 import org.example.abstract_factory.FontStyle;
 import org.example.elements.*;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class FlipperMachine {
@@ -72,21 +74,44 @@ public class FlipperMachine {
         return field;
     }
 
-    public void mediateControl() {
+    public void mediateControl(int gameControl) {
+        if((gameControl == 1 || gameControl == 2) && !Objects.equals(game.state, "launched")){
+            System.out.println("Ball not launched... Please launch Ball first!");
+            handleControl(ui.gameControl());
+            return;
+        }
 
         boolean result = game.initiateRoundv2();
 
         if (result) {
-            System.out.println("Hit left or right Flipper!");
-            //TODO: Add points to score
-            handleControl(ui.gameControl());
+            int flipper = game.generateRandomNumber(1,2);
+
+            if (flipper == 1) {
+                System.out.println("Hit LEFT Flipper!");
+            } else {
+                System.out.println("Hit RIGHT Flipper!");
+            }
+
+            int action = ui.gameControl();
+
+            if(action == flipper){
+                handleControl(action);
+            } else {
+                System.out.println("Wrong Flipper! Ball lost!");
+                this.game.lifes--;
+                this.game.state = "running";
+                nextBall(this.game.lifes);
+            }
+
         } else {
-            //TODO: Reset board
-            printBall(this.game.lifes);
+            System.out.println("Ball fell between both flippers... Bad luck!");
+            this.game.lifes--;
+            this.game.state = "running";
+            nextBall(this.game.lifes);
         }
     }
 
-    private void printBall(int lifes) {
+    private void nextBall(int lifes) {
         switch (lifes) {
             case 1 -> {
                 writeFont.printBall3();
@@ -114,15 +139,17 @@ public class FlipperMachine {
             insertCoin(1);
             startGame();
         }
+        ui.initializeFlipper();
     }
 
     public void handleControl(int input) {
         Scanner scanner = new Scanner(System.in);
         switch (input) {
-            case 1, 2 -> mediateControl();
+            case 1 -> mediateControl(1);
+            case 2 -> mediateControl(2);
             case 3 -> {
                 game.launchBall();
-                mediateControl();
+                mediateControl(3);
             }
             case 4 -> {
                 pressStart();
@@ -138,10 +165,6 @@ public class FlipperMachine {
                 handleControl(ui.gameControl());
             }
             case 7 -> {
-                this.game.difficulty = ui.selectDifficutly();
-                handleControl(ui.gameControl());
-            }
-            case 8 -> {
                 ui.showHelp();
                 handleControl(ui.gameControl());
             }
