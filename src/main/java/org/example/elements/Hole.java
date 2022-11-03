@@ -19,15 +19,15 @@ public class Hole extends Element {
         return this.points;
     }
 
-
     @Override
     public void accept(Visitor visitor) {
-
+        visitor.visitHole(this);
     }
 
     //Command Pattern
     @Override
     public void hit() {
-
+        System.out.println("Hole "+name+" hit!");
+        increasePoints();
     }
 }

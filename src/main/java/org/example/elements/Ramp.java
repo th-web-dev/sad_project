@@ -34,5 +34,9 @@ public class Ramp extends Element {
 
     //Command Pattern
     @Override
-    public void hit() { }
+    public void hit() {
+        System.out.println("Ramp " + name + " hit!");
+        close();
+        increasePoints();
+    }
 }

@@ -29,6 +29,10 @@ public abstract class Element implements ElementActions {
         return state;
     }
 
+    public void increasePoints() {
+        this.points += hitValue;
+    }
+
     public void launchBall() { }
 
     public void bounceBall() { }

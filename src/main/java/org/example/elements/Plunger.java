@@ -24,9 +24,16 @@ public class Plunger extends Element {
         visitor.visitPlunger(this);
     }
 
+    public void open() {
+        this.isOpen = true;
+    }
+
+    public void close() { this.isOpen = false; }
+
     //Command Pattern
     @Override
     public void hit() {
-
+        System.out.println("Plunger " + name + " hit!");
+        increasePoints();
     }
 }

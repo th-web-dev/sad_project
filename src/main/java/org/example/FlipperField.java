@@ -55,7 +55,6 @@ public class FlipperField implements ElementMediator {
         }
     }
 
-
     // IF ALL BUMPER ARE IN ACTIVE STATE ALL hitValues ARE GETTING DOUBLED
     public void checkBumper(){
         int i = 0, b = 0;
@@ -73,7 +72,4 @@ public class FlipperField implements ElementMediator {
             }
         }
     }
-
-
-
 }

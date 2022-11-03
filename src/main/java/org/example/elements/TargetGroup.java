@@ -9,7 +9,6 @@ import java.util.List;
 public class TargetGroup extends Element {
     private List<Target> targets;
     public int points;
-    public String name;
 
     public TargetGroup(int amountOfTargets, ElementMediator mediator, String name){
         super(mediator, name);
@@ -47,6 +46,11 @@ public class TargetGroup extends Element {
     //Command Pattern
     @Override
     public void hit() {
-
+        for (Target t : targets){
+            if(t.state == "inactive"){
+                t.hit();
+                return;
+            }
+        }
     }
 }

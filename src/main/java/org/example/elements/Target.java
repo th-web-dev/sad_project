@@ -28,7 +28,8 @@ public class Target extends Element {
     //Command Pattern
     @Override
     public void hit() {
-        this.points += hitValue;
+        System.out.println("Target " + name + " hit!");
+        increasePoints();
         this.state = "active";
         mediator.checkTargetGroup(name);
     }

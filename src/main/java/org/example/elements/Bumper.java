@@ -27,6 +27,8 @@ public class Bumper extends Element{
     //Command Pattern
     @Override
     public void hit() {
+        System.out.println("Bumper " + name + " hit!");
+        increasePoints();
         this.state = toggleActive(this.state);
         mediator.checkBumper();
     }

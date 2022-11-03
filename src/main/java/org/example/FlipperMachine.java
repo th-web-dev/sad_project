@@ -74,7 +74,7 @@ public class FlipperMachine {
 
     public void mediateControl() {
 
-        boolean result = game.initiateRound();
+        boolean result = game.initiateRoundv2();
 
         if (result) {
             System.out.println("Hit left or right Flipper!");
@@ -108,7 +108,6 @@ public class FlipperMachine {
     }
 
     private void gameOverGamble() {
-        //TODO: Finalisieren
         int gamble = game.generateRandomNumber(0, 1);
         if (gamble == 1) {
             System.out.println("Congratulations! You won a free Game!");

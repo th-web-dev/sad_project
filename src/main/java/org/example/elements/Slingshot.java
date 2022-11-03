@@ -25,6 +25,7 @@ public class Slingshot extends Element{
     //Command Pattern
     @Override
     public void hit() {
-        this.blinkingLED();
+        System.out.println("Slingshot " + name + " hit!");
+        increasePoints();
     }
 }

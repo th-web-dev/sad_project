@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.visitors.PunkteVisitor;
+
 import java.util.Scanner;
 
 //Vermittler Pattern: Vermittler
@@ -30,7 +32,7 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         int randomNumber = generateRandomNumber(1,100);
         int guess, tries = convertDifficultyToTries(), lastGuess = 0;
-        boolean isLower = false;
+        boolean isLower = false, running = true;
         System.out.println("Guess the number between 1 and 100! You have "+tries+" guesses: ");
 
         for(int i=1; i<=tries; i++){
@@ -43,19 +45,28 @@ public class Game {
             }
 
             if(guess > randomNumber && i != tries){
+                running = true;
                 System.out.println("Number is lower than your guess! Next: ");
                 lastGuess = guess;
                 isLower = true;
-                //TODO: Hit something
+                while (running){
+                    running = this.ball.hitSomething(this.field);
+                }
 
             } else if( guess < randomNumber && i != tries){
+                running = true;
                 System.out.println("Number is higher than your guess! Next: ");
                 lastGuess = guess;
                 isLower = false;
-                //TODO: Hit something
+                while (running){
+                    running = this.ball.hitSomething(this.field);
+                }
 
             } else if (guess == randomNumber) {
                 System.out.println("Your are right! The number is: " + randomNumber);
+                PunkteVisitor punkteVisitor = new PunkteVisitor();
+                this.score = punkteVisitor.sumElements(field.childFieldElements);
+                System.out.println(score);
                 return true;
             }
         }
@@ -63,6 +74,22 @@ public class Game {
         System.out.println("Ball lost!");
         this.lifes --;
         return false;
+    }
+
+    public boolean initiateRoundv2(){
+        boolean running;
+        int randomNumber = generateRandomNumber(1,10);
+        for (int i = 0; i < randomNumber; i++) {
+            running = true;
+            while (running){
+                running = this.ball.hitSomething(this.field);
+            }
+        }
+
+        PunkteVisitor punkteVisitor = new PunkteVisitor();
+        this.score = punkteVisitor.sumElements(field.childFieldElements);
+
+        return true;
     }
 
     public int generateRandomNumber(int min, int max){
