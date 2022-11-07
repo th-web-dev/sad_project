@@ -29,5 +29,6 @@ public class Hole extends Element {
     public void hit() {
         System.out.println("Hole "+name+" hit!");
         increasePoints();
+        mediator.checkPlunger(name);
     }
 }

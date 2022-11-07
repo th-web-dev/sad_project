@@ -4,6 +4,7 @@ import org.example.elements.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 // Composite Pattern: Head Class
 // Mediator Pattern: Mediator
@@ -31,14 +32,13 @@ public class FlipperField implements ElementMediator {
 
 
     //    MEDIATOR CONTROLS
-
     // OPEN RAMP IF ALL TARGETS OF A GROUP ARE ACTIVE && RESET ALL TARGETS IF TRUE
     @Override
     public void checkTargetGroup(String name) {
         boolean result = false;
         TargetGroup thisGroup = null;
         for(Element e : childFieldElements){
-            if(e.name == name && e instanceof TargetGroup){
+            if(Objects.equals(e.name, name) && e instanceof TargetGroup){
                 thisGroup = (TargetGroup)e;
                 result = thisGroup.allTargetsActive();
             }
@@ -47,7 +47,7 @@ public class FlipperField implements ElementMediator {
         if(result){
             thisGroup.resetTargets();
             for(Element e : childFieldElements){
-                if(e.name == name && e instanceof Ramp){
+                if(Objects.equals(e.name, name) && e instanceof Ramp){
                     System.out.println(e.name + " Ramp open!");
                     ((Ramp)e).open();
                 }
@@ -61,7 +61,7 @@ public class FlipperField implements ElementMediator {
         for(Element e : childFieldElements){
             if( e instanceof Bumper) {
                 b++;
-                if (((Bumper)e).state == "active") i++;
+                if (Objects.equals(((Bumper) e).state, "active")) i++;
             }
         }
 
@@ -72,4 +72,17 @@ public class FlipperField implements ElementMediator {
             }
         }
     }
+
+    // IF A HOLE IS HIT THE ACCORDING PLUNGER OPENS
+    public void checkPlunger(String name){
+        for(Element e : childFieldElements){
+            if( e instanceof Plunger && Objects.equals(e.name, name)) {
+                if(!((Plunger) e).isOpen){
+                    System.out.println(name + " Plunger opened!");
+                    ((Plunger) e).isOpen = true;
+                }
+            }
+        }
+    }
+
 }

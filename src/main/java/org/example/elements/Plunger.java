@@ -10,7 +10,7 @@ public class Plunger extends Element {
         super(mediator, name);
         this.points = 0;
         this.isOpen = false;
-        this.hitValue = 10;
+        this.hitValue = 80;
     }
 
     @Override
@@ -33,7 +33,8 @@ public class Plunger extends Element {
     //Command Pattern
     @Override
     public void hit() {
-        System.out.println("Plunger " + name + " hit!");
+        System.out.println(name + " Plunger hit!");
         increasePoints();
+        isOpen = false;
     }
 }

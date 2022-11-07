@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.abstract_factory.FontStyle;
 import org.example.elements.*;
+import org.example.visitors.ResetVisitor;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -65,8 +66,8 @@ public class FlipperMachine {
         field.addElement(new Slingshot(field, "LIGHTNING2"));
         field.addElement(new TargetGroup(5, field, "555"));
         field.addElement(new TargetGroup(5, field, "5FINGERS"));
-        field.addElement(new Hole(field, "WORM"));
-        field.addElement(new Hole(field, "BLACK"));
+        field.addElement(new Hole(field, "LEFT"));
+        field.addElement(new Hole(field, "RIGHT"));
         field.addElement(new Ramp(field, "555"));
         field.addElement(new Ramp(field, "5FINGERS"));
         field.addElement(new Plunger(field, "LEFT"));
@@ -113,6 +114,9 @@ public class FlipperMachine {
     }
 
     private void nextBall(int lifes) {
+        ResetVisitor resetVisitor = new ResetVisitor();
+        resetVisitor.resetElements(field.childFieldElements);
+
         switch (lifes) {
             case 1 -> {
                 writeFont.printBall3();
