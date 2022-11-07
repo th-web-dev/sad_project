@@ -133,6 +133,7 @@ public class FlipperMachine {
             case 0 -> {
                 writeFont.printGameOver();
                 gameOverGamble();
+                state = "End";
             }
         }
     }
@@ -148,8 +149,9 @@ public class FlipperMachine {
             System.out.println("Congratulations! You won a free Game!");
             insertCoin(1);
             startGame();
+        } else {
+            ui.initializeFlipper();
         }
-        ui.initializeFlipper();
     }
 
     public void handleControl(int input) {
