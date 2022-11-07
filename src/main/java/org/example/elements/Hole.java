@@ -11,14 +11,6 @@ public class Hole extends Element {
         this.hitValue = 30;
     }
 
-
-    @Override
-    public int generatePoints() {
-        this.points=this.hitValue;
-
-        return this.points;
-    }
-
     @Override
     public void accept(Visitor visitor) {
         visitor.visitHole(this);

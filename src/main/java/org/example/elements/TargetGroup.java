@@ -33,12 +33,6 @@ public class TargetGroup extends Element {
     }
 
     @Override
-    public int generatePoints() {
-        targets.forEach(e -> points += e.generatePoints());
-        return points;
-    }
-
-    @Override
     public void accept(Visitor visitor) {
         visitor.visitTargetGroup(this);
     }

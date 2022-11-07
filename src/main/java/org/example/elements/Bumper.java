@@ -14,12 +14,6 @@ public class Bumper extends Element{
     }
 
     @Override
-    public int generatePoints() {
-        this.points=this.hitValue;
-        return points;
-    }
-
-    @Override
     public void accept(Visitor visitor) {
         visitor.visitBumper(this);
     }

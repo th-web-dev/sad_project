@@ -16,12 +16,6 @@ public class FlipperField implements ElementMediator {
         childFieldElements = new ArrayList<>();
     }
 
-    public int generatePoints() {
-        score = 0;
-        childFieldElements.forEach(e -> score += e.generatePoints());
-        return score;
-    }
-
     public void addElement(Element element){
         childFieldElements.add(element);
     }

@@ -14,12 +14,6 @@ public class Plunger extends Element {
     }
 
     @Override
-    public int generatePoints() {
-        this.points=this.hitValue;
-        return this.points;
-    }
-
-    @Override
     public void accept(Visitor visitor) {
         visitor.visitPlunger(this);
     }

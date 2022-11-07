@@ -42,7 +42,6 @@ public abstract class Element implements ElementActions {
 
     public void activate() { }
 
-    public abstract int generatePoints();
 
     public abstract void accept(Visitor visitor);
 }

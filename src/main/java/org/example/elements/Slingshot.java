@@ -12,12 +12,6 @@ public class Slingshot extends Element{
     }
 
     @Override
-    public int generatePoints() {
-        this.points=this.hitValue;
-        return points;
-    }
-
-    @Override
     public void accept(Visitor visitor) {
         visitor.visitSlingshot(this);
     }

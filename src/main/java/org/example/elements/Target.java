@@ -13,13 +13,6 @@ public class Target extends Element {
         this.state = "inactive";
     }
 
-
-    @Override
-    public int generatePoints() {
-        this.points=this.hitValue;
-        return points;
-    }
-
     @Override
     public void accept(Visitor visitor) {
         visitor.visitTarget(this);
