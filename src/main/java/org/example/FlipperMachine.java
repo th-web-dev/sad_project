@@ -1,6 +1,5 @@
 package org.example;
 
-import com.sun.tools.attach.AgentInitializationException;
 import org.example.abstract_factory.FontStyle;
 import org.example.elements.*;
 
@@ -14,11 +13,13 @@ public class FlipperMachine {
     public UserInterface ui;
     public FlipperField field;
     public Game game;
+    public ScoreBoard scoreBoard;
 
     public FlipperMachine(FontStyle writeFont, UserInterface ui) {
         this.writeFont = writeFont;
         this.credit = 0;
         this.ui = ui;
+        this.scoreBoard = new ScoreBoard();
         this.state = "No Credit";
     }
 
@@ -133,6 +134,11 @@ public class FlipperMachine {
     }
 
     private void gameOverGamble() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Your Score is: " + game.score);
+        System.out.println("Type in your name for the Score Board: ");
+        String name = scanner.next();
+        scoreBoard.addScore(new Score(name, game.score));
         int gamble = game.generateRandomNumber(0, 1);
         if (gamble == 1) {
             System.out.println("Congratulations! You won a free Game!");
@@ -166,6 +172,10 @@ public class FlipperMachine {
             }
             case 7 -> {
                 ui.showHelp();
+                handleControl(ui.gameControl());
+            }
+            case 8 -> {
+                ui.showScoreboard(scoreBoard);
                 handleControl(ui.gameControl());
             }
         }

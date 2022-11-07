@@ -112,12 +112,38 @@ public class UserInterface {
         System.out.println("|     5. Insert Coin       |");
         System.out.println("|     6. Set/Change Font   |");
         System.out.println("|     7. Help              |");
+        System.out.println("|     8. Scoreboard        |");
         System.out.println("============================");
 
         System.out.println("Select Option: ");
         input = scanner.nextInt();
-        input = validateInput(input, 1, 7);
+        input = validateInput(input, 1, 8);
 
         return input;
     }
+
+    public void showScoreboard(ScoreBoard scoreBoard){
+        Scanner scanner = new Scanner(System.in);
+        int placement = 1, input = 0;
+
+        System.out.println("================================");
+
+        if(scoreBoard.scoreList.size() == 0){
+            System.out.println("|        No Highscores         |");
+        } else {
+            for(Score score : scoreBoard.scoreList){
+                System.out.printf("== %d. %-10s  %010d ==\n",placement, score.name, score.score);
+                placement ++;
+            }
+        }
+        System.out.println("================================");
+        System.out.println("|     Press 0 to Exit          |");
+        System.out.println("================================");
+
+        System.out.println("Select Option: ");
+        input = scanner.nextInt();
+
+    }
+
+
 }

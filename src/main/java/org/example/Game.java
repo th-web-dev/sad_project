@@ -39,7 +39,7 @@ public class Game {
             }
         }
 
-        int chanceOfLoss = generateRandomNumber(1,3);
+        int chanceOfLoss = generateRandomNumber(1,10);
 
         PunkteVisitor punkteVisitor = new PunkteVisitor();
         this.score = punkteVisitor.sumElements(field.childFieldElements);
